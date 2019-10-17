@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.10.
 
-### task: 
+### Task: 
 http://wklejto.pl/txt772850
 
 ## Development server
