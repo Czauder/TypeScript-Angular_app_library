@@ -33,7 +33,6 @@ export class Person {
   public userFinancialAccount: UserFinancialAccount;
   public borrowBooks: Array<Book>;
   public boughtBooks: Array<Book>;
-  public operationDate: string;
 
   public constructor(
     name: string,
