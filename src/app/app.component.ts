@@ -18,6 +18,7 @@ export enum bookType {
 class Program {
   public static main(): void {
     const bookstore = new Bookstore();
+
     console.log(bookstore);
   }
 }
@@ -31,8 +32,8 @@ export class Person {
   public email: string;
   public wallet: Wallet;
   public userFinancialAccount: UserFinancialAccount;
-  public borrowBooks: Array<Book>;
-  public boughtBooks: Array<Book>;
+  public borrowBooks: Array<Book> = [];
+  public boughtBooks: Array<Book> = [];
 
   public constructor(
     name: string,
