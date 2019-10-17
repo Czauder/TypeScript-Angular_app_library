@@ -33,27 +33,30 @@ export class Person {
   public userFinancialAccount: UserFinancialAccount;
   public borrowBooks: Array<Book>;
   public boughtBooks: Array<Book>;
+  public operationDate: string;
 
   public constructor(
     name: string,
     email: string,
     wallet: Wallet,
     borrowBooks?: [],
-    boughtBooks?: []
+    boughtBooks?: [],
   ) {
     this.name = name;
     this.email = email;
-    (this.wallet = wallet),
-      (this.borrowBooks = borrowBooks),
-      (this.boughtBooks = boughtBooks);
+    this.wallet = wallet;
+    this.borrowBooks = borrowBooks;
+    this.boughtBooks = boughtBooks;
   }
 }
 
 export class Wallet {
   public currentCash: number;
+  public operationDate: string;
 
-  public constructor(currentCash: number) {
+  public constructor(currentCash: number, operationDate: string) {
     this.currentCash = currentCash;
+    this.operationDate = operationDate;
   }
 }
 
