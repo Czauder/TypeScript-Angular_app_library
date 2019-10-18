@@ -16,4 +16,8 @@ export class Bookstore {
   public addBooks(books: Array<Book>): void {
     this.books = this.books.concat(books);
   }
+
+  public addUsers(clients: Array<User>) {
+    this.clients = this.clients.concat(clients);
+  }
 }

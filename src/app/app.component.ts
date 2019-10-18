@@ -43,12 +43,21 @@ class Program {
     const books = [book1, book2, book3, book4];
 
     const user1 = new User('Jan Maj', 'maj@gmail.com', new Wallet(150));
+    const user2 = new User('Ania Lewangolska', 'ania@gmail.com', new Wallet(650));
+    const user3 = new User( 'Zosia Stróż', 'zosia@gmail.com', new Wallet(90));
+    const user4 = new User('Maciek Król', 'krol@gmail.com', new Wallet(50));
+    const user5 = new User('Tomek Kot', 'kot@gmail.com', new Wallet(154));
+
+    const users = [user2, user3, user4, user5];
 
     bookstore.addBooks(books);
     console.log(bookstore.books);
  
     bookstore.addUser(user1);
-    console.log(bookstore.clients[0])
+    console.log(bookstore.clients[0]);
+
+    bookstore.addUsers(users);
+    console.log(bookstore.clients)
   }
 }
 
