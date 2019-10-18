@@ -1,41 +1,41 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
-import { bookType } from "./book-type.enum";
-import { Book } from "./models/book-model";
-import { Bookstore } from "./models/bookstore-model";
+import { bookType } from './book-type.enum';
+import { Book } from './models/book-model';
+import { Bookstore } from './models/bookstore-model';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = "bookstore-app";
+  title = 'bookstore-app';
 }
 
 class Program {
   public static main(): void {
     const bookstore = new Bookstore();
-    const book1 = new Book(1, "Some Book", bookType.Comedy, "Jaś Fasola", 15);
+    const book1 = new Book(1, 'Some Book', bookType.Comedy, 'Jaś Fasola', 15);
     const book2 = new Book(
       2,
-      "Alicja w Krainie Czarów",
+      'Alicja w Krainie Czarów',
       bookType.Criminal,
-      "Jacek Jakiś",
+      'Jacek Jakiś',
       20
     );
     const book3 = new Book(
       3,
-      "Dzieci z Bul",
+      'Dzieci z Bul',
       bookType.Romantic,
-      "Janusz Kot",
+      'Janusz Kot',
       20
     );
     const book4 = new Book(
       4,
-      "JavaScript",
+      'JavaScript',
       bookType.Comedy,
-      "Maciek Garncarz",
+      'Maciek Garncarz',
       20
     );
 
