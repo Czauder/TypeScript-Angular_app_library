@@ -7,7 +7,6 @@ export class User {
   public name: string;
   public email: string;
   public wallet: Wallet;
-  public transaction: Transaction;
   public borrowBooks: Array<Book> = [];
   public boughtBooks: Array<Book> = [];
 

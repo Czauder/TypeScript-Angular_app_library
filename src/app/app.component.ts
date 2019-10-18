@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { bookType } from './book-type.enum';
 import { Book } from './models/book-model';
 import { Bookstore } from './models/bookstore-model';
+import { User } from './models/user-model';
+import { Wallet } from './models/wallet-model';
 
 @Component({
   selector: 'app-root',
@@ -38,11 +40,15 @@ class Program {
       'Maciek Garncarz',
       20
     );
-
     const books = [book1, book2, book3, book4];
+
+    const user1 = new User('Jan Maj', 'maj@gmail.com', new Wallet(150));
 
     bookstore.addBooks(books);
     console.log(bookstore.books);
+ 
+    bookstore.addUser(user1);
+    console.log(bookstore.clients[0])
   }
 }
 
