@@ -5,6 +5,8 @@ import { Book } from './models/book-model';
 import { Bookstore } from './models/bookstore-model';
 import { User } from './models/user-model';
 import { Wallet } from './models/wallet-model';
+import { Transaction } from './models/transaction-model';
+import { transactionType } from './transaction-type.enum';
 
 @Component({
   selector: 'app-root',
@@ -43,8 +45,12 @@ class Program {
     const books = [book1, book2, book3, book4];
 
     const user1 = new User('Jan Maj', 'maj@gmail.com', new Wallet(150));
-    const user2 = new User('Ania Lewangolska', 'ania@gmail.com', new Wallet(650));
-    const user3 = new User( 'Zosia Stróż', 'zosia@gmail.com', new Wallet(90));
+    const user2 = new User(
+      'Ania Lewangolska',
+      'ania@gmail.com',
+      new Wallet(650)
+    );
+    const user3 = new User('Zosia Stróż', 'zosia@gmail.com', new Wallet(90));
     const user4 = new User('Maciek Król', 'krol@gmail.com', new Wallet(50));
     const user5 = new User('Tomek Kot', 'kot@gmail.com', new Wallet(154));
 
@@ -52,12 +58,22 @@ class Program {
 
     bookstore.addBooks(books);
     console.log(bookstore.books);
- 
+
     bookstore.addUser(user1);
-    console.log(bookstore.clients[0]);
+    // console.log(bookstore.clients[0]);
 
     bookstore.addUsers(users);
-    console.log(bookstore.clients)
+    console.log(bookstore.clients);
+
+    const transaction1 = new Transaction(
+      user1,
+      transactionType.boughtBooks,
+      '21.05.2012',
+      book1
+    );
+
+    bookstore.buyBook(transaction1, user1);
+    console.log(transaction1);
   }
 }
 

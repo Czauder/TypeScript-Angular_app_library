@@ -1,4 +1,4 @@
 export enum transactionType {
-  borrowBooks = 'borrow books',
-  boughtBooks = 'bought books'
+  borrowBooks = 'borrow book',
+  boughtBooks = 'buy book'
 }

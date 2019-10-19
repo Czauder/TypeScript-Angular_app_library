@@ -1,5 +1,6 @@
 import { Book } from './book-model';
 import { User } from './user-model';
+import { Transaction } from './transaction-model';
 
 export class Bookstore {
   public clients: Array<User> = [];
@@ -20,4 +21,13 @@ export class Bookstore {
   public addUsers(clients: Array<User>) {
     this.clients = this.clients.concat(clients);
   }
+
+  public buyBook(transaction: Transaction, client: User): void {
+    if (client.wallet.currentCash >= transaction.book.price) {
+      client.boughtBooks.push(transaction.book);
+      client.wallet.currentCash -= transaction.book.price;
+    }
+  }
+
+  public borrowBook(): void {}
 }
