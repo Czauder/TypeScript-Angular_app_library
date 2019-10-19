@@ -20,27 +20,30 @@ export class AppComponent {
 class Program {
   public static main(): void {
     const bookstore = new Bookstore();
-    const book1 = new Book(1, 'Some Book', bookType.Comedy, 'Jaś Fasola', 15);
+    const book1 = new Book(1, 'Some Book', bookType.Comedy, 'Jaś Fasola', 15, 5);
     const book2 = new Book(
       2,
       'Alicja w Krainie Czarów',
       bookType.Criminal,
       'Jacek Jakiś',
-      20
+      20,
+      10
     );
     const book3 = new Book(
       3,
       'Dzieci z Bul',
       bookType.Romantic,
       'Janusz Kot',
-      20
+      20,
+      5
     );
     const book4 = new Book(
       4,
       'JavaScript',
       bookType.Comedy,
       'Maciek Garncarz',
-      20
+      20,
+      5
     );
     const books = [book1, book2, book3, book4];
 
@@ -77,11 +80,21 @@ class Program {
       book3
     );
 
+    const transaction3 = new Transaction(
+      user4,
+      transactionType.borrowBooks,
+      new Date(),
+      book4
+    )
+
     bookstore.buyBook(transaction1, user1);
     console.log(transaction1);
 
     bookstore.buyBook(transaction2, user2);
     console.log(transaction2);
+
+    bookstore.borrowBook(transaction3, user4);
+    console.log(transaction3);
   }
 }
 

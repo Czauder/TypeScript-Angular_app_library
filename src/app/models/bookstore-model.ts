@@ -29,5 +29,10 @@ export class Bookstore {
     }
   }
 
-  public borrowBook(): void {}
+  public borrowBook(transaction: Transaction, client: User): void {
+    if (client.wallet.currentCash >= transaction.book.price) {
+      client.borrowBooks.push(transaction.book);
+      client.wallet.currentCash -= transaction.book.rentalPrice;
+    }
+  }
 }
