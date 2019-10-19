@@ -30,9 +30,27 @@ export class Bookstore {
   }
 
   public borrowBook(transaction: Transaction, client: User): void {
+    client.borrowBooks.forEach(value => {
+      if (value.nameBook === transaction.book.nameBook) {
+        console.log('user already have this book');
+        return;
+      }
+    });
+    client.boughtBooks.forEach(item => {
+      if (item.nameBook === transaction.book.nameBook) {
+        console.log('user already have this book');
+        return;
+      }
+    });
     if (client.wallet.currentCash >= transaction.book.price) {
       client.borrowBooks.push(transaction.book);
       client.wallet.currentCash -= transaction.book.rentalPrice;
     }
   }
 }
+
+
+// if (new Date() > transaction.book.borrowData.getReturnDate){
+//   client.borrowBooks.filter(x => {
+//     return x.id != id;
+//   });

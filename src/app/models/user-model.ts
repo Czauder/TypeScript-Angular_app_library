@@ -1,7 +1,5 @@
 import { Book } from './book-model';
-import { Transaction } from './transaction-model';
 import { Wallet } from './wallet-model';
-
 
 export class User {
   public name: string;
@@ -9,14 +7,16 @@ export class User {
   public wallet: Wallet;
   public borrowBooks: Array<Book> = [];
   public boughtBooks: Array<Book> = [];
+  private bankAccount = 1500;
 
-  public constructor(
-    name: string,
-    email: string,
-    wallet: Wallet,
-  ) {
+  public constructor(name: string, email: string, wallet: Wallet) {
     this.name = name;
     this.email = email;
     this.wallet = wallet;
+  }
+
+  private addMoneytoWallet(): void {
+    this.wallet.currentCash += this.bankAccount;
+    console.log('dodano środki z Banku');
   }
 }
