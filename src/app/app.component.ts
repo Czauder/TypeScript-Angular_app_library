@@ -3,9 +3,9 @@ import { Component } from '@angular/core';
 import { bookType } from './book-type.enum';
 import { Book } from './models/book-model';
 import { Bookstore } from './models/bookstore-model';
+import { Transaction } from './models/transaction-model';
 import { User } from './models/user-model';
 import { Wallet } from './models/wallet-model';
-import { Transaction } from './models/transaction-model';
 import { transactionType } from './transaction-type.enum';
 
 @Component({
@@ -67,13 +67,21 @@ class Program {
 
     const transaction1 = new Transaction(
       user1,
-      transactionType.boughtBooks,
-      '21.05.2012',
-      book1
+      transactionType.boughtBooks, new Date(),
+      book2
+    );
+
+    const transaction2 = new Transaction(
+      user2,
+      transactionType.boughtBooks, new Date(),
+      book3
     );
 
     bookstore.buyBook(transaction1, user1);
     console.log(transaction1);
+
+    bookstore.buyBook(transaction2, user2);
+    console.log(transaction2);
   }
 }
 

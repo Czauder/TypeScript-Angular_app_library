@@ -6,7 +6,7 @@ export class Transaction {
   public constructor(
     public user: User,
     public typeTransaction: transactionType,
-    public date: string,
+    public date: Date,
     public book: Book
   ) {
     this.user = user;
