@@ -14,9 +14,4 @@ export class User {
     this.email = email;
     this.wallet = wallet;
   }
-
-  private addMoneytoWallet(): void {
-    this.wallet.currentCash += this.bankAccount;
-    console.log('dodano środki z Banku');
-  }
 }
