@@ -97,5 +97,7 @@ export class AppComponent implements OnInit {
     console.log(this.bookstoreService.clients[0]);
 
     this.bookstoreService.buyBook(this.transaction1, this.user1);
+
+    this.userService.addMoneytoWallet(this.user1);
   }
 }

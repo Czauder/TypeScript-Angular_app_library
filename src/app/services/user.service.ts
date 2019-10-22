@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Wallet } from '../models/wallet-model';
+import { User } from '../models/user-model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  public wallet: Wallet;
   private bankAccount = 1500;
 
   constructor() { }
 
-  public addMoneytoWallet(): void {
-    this.wallet.currentCash += this.bankAccount;
+  public addMoneytoWallet(user: User): void {
+    user.wallet.currentCash += this.bankAccount;
     console.log('dodano środki z Banku');
   }
 }
