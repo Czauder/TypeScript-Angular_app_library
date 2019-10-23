@@ -13,7 +13,7 @@ export class UserService {
   constructor(private bookstoreService: BookstoreService) {}
 
   public addMoneyToWallet(user: User): void {
-    user.wallet.currentCash.value += this.bankAccount;
+    user.wallet.balance.value += this.bankAccount;
     console.log('dodano środki z Banku');
   }
 
@@ -22,9 +22,16 @@ export class UserService {
     userReceiving: User,
     transaction: Transaction
   ): void {
-    if (userBuying.wallet.currentCash.value >= transaction.book.price) {
+    if (
+      this.bookstoreService.hasBookInBorrowBooks(transaction) ||
+      this.bookstoreService.hasBookInBoughtBooks(transaction)
+    ) {
+      return;
+    }
+
+    if (userBuying.wallet.balance.value >= transaction.book.price) {
       userReceiving.boughtBooks.push(transaction.book);
-      userBuying.wallet.currentCash.value -= transaction.book.price;
+      userBuying.wallet.balance.value -= transaction.book.price;
     }
   }
 }
