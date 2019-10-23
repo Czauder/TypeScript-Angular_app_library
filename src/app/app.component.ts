@@ -12,6 +12,7 @@ import { UserService } from './services/user.service';
 import { transactionType } from './transaction-type.enum';
 import { Price } from './models/price-model';
 import { CurrencyType } from './currency-type.enum';
+import { Guid } from 'guid-typescript';
 
 @Component({
   selector: 'app-root',
@@ -21,42 +22,70 @@ import { CurrencyType } from './currency-type.enum';
 export class AppComponent implements OnInit {
   title = 'bookstore-app';
   public bookstore = new Bookstore();
-  public book1 = new Book(1, 'Angular 8', bookType.Comedy, new Author(1, 'Janusz', 'Malarz'), 50, 10);
+  public book1 = new Book(
+    Guid.create(),
+    'Angular 8',
+    bookType.Comedy,
+    new Author(Guid.create(), 'Janusz', 'Malarz'),
+    50,
+    10
+  );
   public book2 = new Book(
-    2,
+    Guid.create(),
     'Alicja w Krainie Czarów',
     bookType.Criminal,
-    new Author(1, 'Janusz', 'Niewiem'),
+    new Author(Guid.create(), 'Janusz', 'Niewiem'),
     20,
     10
   );
   public book3 = new Book(
-    3,
+    Guid.create(),
     'Dzieci z Bul',
     bookType.Romantic,
-    new Author(2, 'Kuba', 'Koś'),
+    new Author(Guid.create(), 'Kuba', 'Koś'),
     20,
     5
   );
   public book4 = new Book(
-    4,
+    Guid.create(),
     'JavaScript',
     bookType.Comedy,
-    new Author(3, 'Bogdan', 'Malarz'),
+    new Author(Guid.create(), 'Bogdan', 'Malarz'),
     20,
     5
   );
   public books = [this.book2, this.book3, this.book4];
 
-  public user1 = new User('Jan Maj', 'maj@gmail.com', new Wallet(new Price(123, CurrencyType.dollar)));
+  public user1 = new User(
+    Guid.create(),
+    'Jan Maj',
+    'maj@gmail.com',
+    new Wallet(new Price(123, CurrencyType.dollar))
+  );
   public user2 = new User(
+    Guid.create(),
     'Ania Lewangolska',
     'ania@gmail.com',
-    new Wallet((new Price(650, CurrencyType.dollar))
-  ));
-  public user3 = new User('Zosia Stróż', 'zosia@gmail.com', new Wallet((new Price(1233, CurrencyType.dollar))));
-  public user4 = new User('Maciek Król', 'krol@gmail.com', new Wallet((new Price(783, CurrencyType.euro))));
-  public user5 = new User('Tomek Kot', 'kot@gmail.com', new Wallet((new Price(5564, CurrencyType.pln))));
+    new Wallet(new Price(650, CurrencyType.dollar))
+  );
+  public user3 = new User(
+    Guid.create(),
+    'Zosia Stróż',
+    'zosia@gmail.com',
+    new Wallet(new Price(1233, CurrencyType.dollar))
+  );
+  public user4 = new User(
+    Guid.create(),
+    'Maciek Król',
+    'krol@gmail.com',
+    new Wallet(new Price(783, CurrencyType.euro))
+  );
+  public user5 = new User(
+    Guid.create(),
+    'Tomek Kot',
+    'kot@gmail.com',
+    new Wallet(new Price(5564, CurrencyType.pln))
+  );
 
   public users = [this.user2, this.user3, this.user4, this.user5];
 

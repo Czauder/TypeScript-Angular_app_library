@@ -41,13 +41,13 @@ export class BookstoreService {
 
   public borrowBook(transaction: Transaction): void {
     transaction.user.borrowBooks.forEach(value => {
-      if (value.nameBook === transaction.book.nameBook) {
+      if (value.name === transaction.book.name) {
         console.log('user already have this book');
         return;
       }
     });
     transaction.user.boughtBooks.forEach(item => {
-      if (item.nameBook === transaction.book.nameBook) {
+      if (item.name === transaction.book.name) {
         console.log('user already have this book');
         return;
       }
