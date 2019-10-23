@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { bookType } from './book-type.enum';
 import { Author } from './models/author-model';
 import { Book } from './models/book-model';
-import { Bookstore } from './models/bookstore-model';
 import { Transaction } from './models/transaction-model';
 import { User } from './models/user-model';
 import { Wallet } from './models/wallet-model';
@@ -21,7 +20,6 @@ import { Guid } from 'guid-typescript';
 })
 export class AppComponent implements OnInit {
   title = 'bookstore-app';
-  public bookstore = new Bookstore();
   public book1 = new Book(
     Guid.create(),
     'Angular 8',
@@ -120,7 +118,7 @@ export class AppComponent implements OnInit {
     // console.log(this.bookstore.books);
 
     this.bookstoreService.addBook(this.book1);
-    console.log(this.bookstore.books);
+    console.log(this.bookstoreService.books);
 
     this.bookstoreService.addUsers(this.users);
     console.log(this.bookstoreService.clients);
