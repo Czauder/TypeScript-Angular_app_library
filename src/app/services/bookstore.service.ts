@@ -10,21 +10,21 @@ export class BookstoreService {
   public clients: Array<User> = [];
   public books: Array<Book> = [];
 
-  constructor() { }
+  constructor() {}
 
   public addUser(client: User): void {
     this.clients.push(client);
   }
 
   public addBook(book: Book): void {
-    console.log(book)
+    console.log(book);
     this.books.push(book);
   }
 
   public addBooks(books: Array<Book>): void {
     this.books = this.books.concat(books);
     // console.log(this.books)
-    console.log(books)
+    console.log(books);
   }
 
   public addUsers(clients: Array<User>) {

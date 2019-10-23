@@ -5,5 +5,5 @@ describe('UserService', () => {
   let spectator: SpectatorService<UserService>;
   const createService = createServiceFactory(UserService);
 
-  beforeEach(() => spectator = createService());
-})
+  beforeEach(() => (spectator = createService()));
+});
