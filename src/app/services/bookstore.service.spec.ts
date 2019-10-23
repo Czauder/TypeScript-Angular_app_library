@@ -1,12 +1,10 @@
-import { TestBed } from '@angular/core/testing';
-
+import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
 import { BookstoreService } from './bookstore.service';
 
-describe('BookstoreService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
 
-  it('should be created', () => {
-    const service: BookstoreService = TestBed.get(BookstoreService);
-    expect(service).toBeTruthy();
-  });
-});
+describe('BookstoreService', () => {
+  let spectator: SpectatorService<BookstoreService>;
+  const createService = createServiceFactory(BookstoreService);
+
+  beforeEach(() => spectator = createService());
+})
