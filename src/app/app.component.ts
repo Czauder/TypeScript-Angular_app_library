@@ -21,68 +21,59 @@ import { Guid } from 'guid-typescript';
 export class AppComponent implements OnInit {
   title = 'bookstore-app';
   public book1 = new Book(
-    Guid.create(),
     'Angular 8',
     bookType.Comedy,
-    new Author(Guid.create(), 'Janusz', 'Malarz'),
-    50,
-    10
+    new Author('Janusz', 'Malarz'),
+    new Price(63, CurrencyType.pln),
+    new Price(6, CurrencyType.pln),
   );
   public book2 = new Book(
-    Guid.create(),
     'Alicja w Krainie Czarów',
     bookType.Criminal,
-    new Author(Guid.create(), 'Janusz', 'Niewiem'),
-    20,
-    10
+    new Author('Janusz', 'Niewiem'),
+    new Price(3, CurrencyType.pln),
+    new Price(2, CurrencyType.pln),
   );
   public book3 = new Book(
-    Guid.create(),
     'Dzieci z Bul',
     bookType.Romantic,
-    new Author(Guid.create(), 'Kuba', 'Koś'),
-    20,
-    5
+    new Author('Kuba', 'Koś'),
+    new Price(123, CurrencyType.pln),
+    new Price(1, CurrencyType.pln),
   );
   public book4 = new Book(
-    Guid.create(),
     'JavaScript',
     bookType.Comedy,
-    new Author(Guid.create(), 'Bogdan', 'Malarz'),
-    20,
-    5
+    new Author('Bogdan', 'Malarz'),
+    new Price(33, CurrencyType.pln),
+    new Price(33, CurrencyType.pln),
   );
   public books = [this.book2, this.book3, this.book4];
 
   public user1 = new User(
-    Guid.create(),
     'Jan Maj',
     'maj@gmail.com',
-    new Wallet(new Price(123, CurrencyType.dollar))
+    new Wallet(123)
   );
   public user2 = new User(
-    Guid.create(),
     'Ania Lewangolska',
     'ania@gmail.com',
-    new Wallet(new Price(650, CurrencyType.dollar))
+    new Wallet(324)
   );
   public user3 = new User(
-    Guid.create(),
     'Zosia Stróż',
     'zosia@gmail.com',
-    new Wallet(new Price(1233, CurrencyType.dollar))
+    new Wallet(1233)
   );
   public user4 = new User(
-    Guid.create(),
     'Maciek Król',
     'krol@gmail.com',
-    new Wallet(new Price(783, CurrencyType.euro))
+    new Wallet(3423)
   );
   public user5 = new User(
-    Guid.create(),
     'Tomek Kot',
     'kot@gmail.com',
-    new Wallet(new Price(5564, CurrencyType.pln))
+    new Wallet(43534)
   );
 
   public users = [this.user2, this.user3, this.user4, this.user5];
@@ -128,6 +119,6 @@ export class AppComponent implements OnInit {
 
     this.bookstoreService.buyBook(this.transaction1);
 
-    this.userService.addMoneyToWallet(this.user1);
+    this.userService.addMoneyToWallet(this.user1, 150);
   }
 }

@@ -31,15 +31,7 @@ export class BookstoreService {
     this.clients = this.clients.concat(clients);
   }
 
-  public buyBook(transaction: Transaction): void {
-    if (transaction.user.wallet.balance.value >= transaction.book.price) {
-      transaction.user.boughtBooks.push(transaction.book);
-      transaction.user.wallet.balance.value -= transaction.book.price;
-      console.log('ksiązka kupiona');
-    }
-  }
-
-  public hasBookInBorrowBooks(transaction: Transaction): boolean  {
+  private hasBookInBorrowBooks(transaction: Transaction): boolean {
     transaction.user.borrowBooks.forEach(value => {
       if (value.name === transaction.book.name) {
         console.log('user already have this book');
@@ -48,7 +40,7 @@ export class BookstoreService {
     return true;
   }
 
- public hasBookInBoughtBooks(transaction: Transaction): boolean {
+  private hasBookInBoughtBooks(transaction: Transaction): boolean {
     transaction.user.boughtBooks.forEach(item => {
       if (item.name === transaction.book.name) {
         console.log('user already have this book');
@@ -57,6 +49,18 @@ export class BookstoreService {
     return true;
   }
 
+  public buyBook(transaction: Transaction): void {
+    if (
+      this.hasBookInBorrowBooks(transaction) ||
+      this.hasBookInBoughtBooks(transaction)
+    ) {
+      if (transaction.user.wallet.balance >= transaction.book.price.value) {
+        transaction.user.boughtBooks.push(transaction.book);
+        transaction.user.wallet.balance -= transaction.book.price.value;
+        console.log('ksiązka kupiona');
+      }
+    }
+  }
 
   public borrowBook(transaction: Transaction): void {
     if (
@@ -65,9 +69,26 @@ export class BookstoreService {
     ) {
       return;
     }
-    if (transaction.user.wallet.balance.value >= transaction.book.price) {
+    if (transaction.user.wallet.balance >= transaction.book.price.value) {
       transaction.user.borrowBooks.push(transaction.book);
-      transaction.user.wallet.balance.value -= transaction.book.rentalPrice;
+      transaction.user.wallet.balance -= transaction.book.rentalPrice.value;
+    }
+  }
+
+  public buyBookAsGift(
+    userBuying: User,
+    userReceiving: User,
+    transaction: Transaction
+  ): void {
+    if (
+      this.hasBookInBorrowBooks(transaction) ||
+      this.hasBookInBoughtBooks(transaction)
+    ) {
+      return;
+    }
+    if (userBuying.wallet.balance >= transaction.book.price.value) {
+      userReceiving.boughtBooks.push(transaction.book);
+      userBuying.wallet.balance -= transaction.book.price.value;
     }
   }
 }

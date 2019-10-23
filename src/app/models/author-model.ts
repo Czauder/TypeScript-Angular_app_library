@@ -5,7 +5,7 @@ export class Author {
   public firstName: string;
   public lastName: string;
 
-  public constructor(id: Guid, firstName: string, lastName: string) {
+  public constructor(firstName: string, lastName: string) {
     this.id = Guid.create();
     this.firstName = firstName;
     this.lastName = lastName;

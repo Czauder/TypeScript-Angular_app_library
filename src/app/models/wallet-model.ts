@@ -1,9 +1,8 @@
-import { Price } from './price-model';
 
 export class Wallet {
-    public balance: Price;
+    public balance: number;
 
-    public constructor(balance: Price) {
+    public constructor(balance: number) {
       this.balance = balance;
     }
   }
