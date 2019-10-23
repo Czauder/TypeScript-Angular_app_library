@@ -1,9 +1,8 @@
 import { returnBookOption } from '../return-book-type.enum';
 
-export class BookBorrowData {
+export class BookBorrow {
   public dateBorrowBook: Date;
   public dateReturnBook: returnBookOption;
-  private returnDate: Date;
 
   get getReturnDate(): Date {
     if (this.dateReturnBook === returnBookOption.after5days) {
@@ -13,5 +12,4 @@ export class BookBorrowData {
     }
   }
 
-  public setReturnData(): void {}
 }

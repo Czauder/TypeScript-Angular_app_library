@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { bookType } from './book-type.enum';
+import { Author } from './models/author-model';
 import { Book } from './models/book-model';
 import { Bookstore } from './models/bookstore-model';
 import { Transaction } from './models/transaction-model';
@@ -9,6 +10,8 @@ import { Wallet } from './models/wallet-model';
 import { BookstoreService } from './services/bookstore.service';
 import { UserService } from './services/user.service';
 import { transactionType } from './transaction-type.enum';
+import { Price } from './models/price-model';
+import { CurrencyType } from './currency-type.enum';
 
 @Component({
   selector: 'app-root',
@@ -18,12 +21,12 @@ import { transactionType } from './transaction-type.enum';
 export class AppComponent implements OnInit {
   title = 'bookstore-app';
   public bookstore = new Bookstore();
-  public book1 = new Book(1, 'Angular 8', bookType.Comedy, 'Mike John', 50, 10);
+  public book1 = new Book(1, 'Angular 8', bookType.Comedy, new Author(1, 'Janusz', 'Malarz'), 50, 10);
   public book2 = new Book(
     2,
     'Alicja w Krainie Czarów',
     bookType.Criminal,
-    'Jacek Jakiś',
+    new Author(1, 'Janusz', 'Niewiem'),
     20,
     10
   );
@@ -31,7 +34,7 @@ export class AppComponent implements OnInit {
     3,
     'Dzieci z Bul',
     bookType.Romantic,
-    'Janusz Kot',
+    new Author(2, 'Kuba', 'Koś'),
     20,
     5
   );
@@ -39,21 +42,21 @@ export class AppComponent implements OnInit {
     4,
     'JavaScript',
     bookType.Comedy,
-    'Maciek Garncarz',
+    new Author(3, 'Bogdan', 'Malarz'),
     20,
     5
   );
   public books = [this.book2, this.book3, this.book4];
 
-  public user1 = new User('Jan Maj', 'maj@gmail.com', new Wallet(150));
+  public user1 = new User('Jan Maj', 'maj@gmail.com', new Wallet(new Price(123, CurrencyType.dollar)));
   public user2 = new User(
     'Ania Lewangolska',
     'ania@gmail.com',
-    new Wallet(650)
-  );
-  public user3 = new User('Zosia Stróż', 'zosia@gmail.com', new Wallet(90));
-  public user4 = new User('Maciek Król', 'krol@gmail.com', new Wallet(50));
-  public user5 = new User('Tomek Kot', 'kot@gmail.com', new Wallet(154));
+    new Wallet((new Price(650, CurrencyType.dollar))
+  ));
+  public user3 = new User('Zosia Stróż', 'zosia@gmail.com', new Wallet((new Price(1233, CurrencyType.dollar))));
+  public user4 = new User('Maciek Król', 'krol@gmail.com', new Wallet((new Price(783, CurrencyType.euro))));
+  public user5 = new User('Tomek Kot', 'kot@gmail.com', new Wallet((new Price(5564, CurrencyType.pln))));
 
   public users = [this.user2, this.user3, this.user4, this.user5];
 
@@ -96,8 +99,8 @@ export class AppComponent implements OnInit {
     this.bookstoreService.addUser(this.user1);
     console.log(this.bookstoreService.clients[0]);
 
-    this.bookstoreService.buyBook(this.transaction1, this.user1);
+    this.bookstoreService.buyBook(this.transaction1);
 
-    this.userService.addMoneytoWallet(this.user1);
+    this.userService.addMoneyToWallet(this.user1);
   }
 }

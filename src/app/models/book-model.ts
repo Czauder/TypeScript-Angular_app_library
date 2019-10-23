@@ -1,20 +1,21 @@
 import { bookType } from '../book-type.enum';
-import { BookBorrowData } from './book-borrow-data-model';
+import { BookBorrow } from './book-borrow';
+import { Author } from './author-model';
 
 export class Book {
   public id: number;
   public nameBook: string;
   public bookCategory: bookType;
-  public author: string;
+  public author: Author;
   public price: number;
   public rentalPrice: number;
-  public borrowData: BookBorrowData;
+  public borrowData: BookBorrow;
 
   public constructor(
     id: number,
     nameBook: string,
     bookCategory: bookType,
-    author: string,
+    author: Author,
     price: number,
     rentalPrice: number
   ) {

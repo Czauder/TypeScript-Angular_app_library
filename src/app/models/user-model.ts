@@ -7,7 +7,6 @@ export class User {
   public wallet: Wallet;
   public borrowBooks: Array<Book> = [];
   public boughtBooks: Array<Book> = [];
-  private bankAccount = 1500;
 
   public constructor(name: string, email: string, wallet: Wallet) {
     this.name = name;

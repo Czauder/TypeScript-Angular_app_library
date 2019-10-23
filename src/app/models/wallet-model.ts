@@ -1,7 +1,9 @@
-export class Wallet {
-    public currentCash: number;
+import { Price } from './price-model';
 
-    public constructor(currentCash: number) {
+export class Wallet {
+    public currentCash: Price;
+
+    public constructor(currentCash: Price) {
       this.currentCash = currentCash;
     }
   }
