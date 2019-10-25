@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
+
+import { Book } from '../models/book-model';
 import { Transaction } from '../models/transaction-model';
 import { User } from '../models/user-model';
-import { Book } from '../models/book-model';
-import { transactionType } from '../transaction-type.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -32,27 +32,31 @@ export class BookstoreService {
   }
 
   private hasBookInBorrowBooks(transaction: Transaction): boolean {
-    transaction.user.borrowBooks.forEach(value => {
+    for (const value of transaction.user.borrowBooks) {
       if (value.name === transaction.book.name) {
         console.log('user already have this book');
+        return true;
       }
-    });
-    return true;
+    }
+    return false;
   }
 
   private hasBookInBoughtBooks(transaction: Transaction): boolean {
-    transaction.user.boughtBooks.forEach(item => {
+    for (const item of transaction.user.borrowBooks) {
       if (item.name === transaction.book.name) {
         console.log('user already have this book');
+        return true;
       }
-    });
-    return true;
+    }
+    return false;
   }
 
   public buyBook(transaction: Transaction): void {
     if (
-      this.hasBookInBorrowBooks(transaction) ||
-      this.hasBookInBoughtBooks(transaction)
+      !(
+        this.hasBookInBorrowBooks(transaction) ||
+        this.hasBookInBoughtBooks(transaction)
+      )
     ) {
       if (transaction.user.wallet.balance >= transaction.book.price.value) {
         transaction.user.boughtBooks.push(transaction.book);

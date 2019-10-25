@@ -51,6 +51,7 @@ describe('BookstoreService', () => {
       new Price(150, CurrencyType.euro),
       new Price(50, CurrencyType.euro)
     );
+
     const transaction = new Transaction(
       user,
       transactionType.borrowBooks,
@@ -85,7 +86,29 @@ describe('BookstoreService', () => {
     expect(spectator.service.clients.includes(user)).toBeTruthy();
   });
 
+  it('should not make transaction when wallet is empty', () => {
+    const user2 = new User('Asia Janek', 'janek@gmail.com', new Wallet(0));
 
-//  czy legnth w tablicy jest taki sam jak wcześniej, przy chęci kupna książki ale braku pieniędzy. 
-// do zmiennej obecną ilość książek i porównać. 
+    const book = new Book(
+      'Jakaś Książka',
+      bookType.Comedy,
+      new Author('Pan', 'Ktoś'),
+      new Price(150, CurrencyType.euro),
+      new Price(50, CurrencyType.euro)
+    );
+
+    const transaction2 = new Transaction(
+      user2,
+      transactionType.boughtBooks,
+      new Date(),
+      book
+    );
+
+    const userBoughtBooks = user2.boughtBooks.length;
+    const userWallet = user2.wallet.balance;
+
+    spectator.service.buyBook(transaction2);
+    expect(user2.boughtBooks.length).toEqual(userBoughtBooks);
+    expect(user2.wallet.balance).toEqual(userWallet);
+  });
 });
