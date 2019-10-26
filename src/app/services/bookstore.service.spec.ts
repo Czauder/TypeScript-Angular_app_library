@@ -1,4 +1,4 @@
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService, mockProvider } from '@ngneat/spectator';
 import { BookstoreService } from './bookstore.service';
 import { User } from '../models/user-model';
 import { Wallet } from '../models/wallet-model';
@@ -9,10 +9,12 @@ import { Author } from '../models/author-model';
 import { CurrencyType } from '../currency-type.enum';
 import { Transaction } from '../models/transaction-model';
 import { transactionType } from '../transaction-type.enum';
+import { RestApiService } from './rest-api.service';
 
 describe('BookstoreService', () => {
   let spectator: SpectatorService<BookstoreService>;
   const createService = createServiceFactory({
+    providers: [mockProvider(RestApiService)],
     service: BookstoreService
   });
 

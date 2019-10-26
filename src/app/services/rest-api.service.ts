@@ -18,7 +18,7 @@ export class RestApiService {
     })
   };
 
-  public addBook(book: Book): Observable<Book> {
+  public createBook(book: Book): Observable<Book> {
     return this.http.post<Book>(
       this.apiURL + '/books',
       JSON.stringify(book),
@@ -26,21 +26,25 @@ export class RestApiService {
     );
   }
 
-  public addUser(user: User): Observable<User> {
-    return this.http.post<User>(
-      this.apiURL + '/users',
-      JSON.stringify(user),
-      this.httpOptions
-    );
-  }
-
   public getBook(): Observable<Book[]> {
+    console.log('getting all books from the server');
     return this.http.get<Book[]>(this.apiURL + '/books');
   }
+
+  // for future implementation 
+
+  // public addUser(user: User): Observable<User> {
+  //   return this.http.post<User>(
+  //     this.apiURL + '/users',
+  //     JSON.stringify(user),
+  //     this.httpOptions
+  //   );
+  // }
 
   // public getUser(): Observable<User[]> {
   //   return this.http.get<User[]>(this.apiURL + '/users');
   // }
+  
 
   // jak dodać obsługę błedu?
   // Error handling

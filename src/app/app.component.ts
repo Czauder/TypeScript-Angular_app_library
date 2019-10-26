@@ -107,7 +107,7 @@ export class AppComponent implements OnInit {
 
     // connection to an external server
     //  book
-    this.bookstoreService.sendBookToServer(this.book4);
+    // this.bookstoreService.sendBookToServer(this.book4);
     this.bookstoreService.loadBooksFromServer();
 
     // user

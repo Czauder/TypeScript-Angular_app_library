@@ -1,12 +1,21 @@
-import { TestBed } from '@angular/core/testing';
+import { createServiceFactory, SpectatorService, mockProvider, HttpMethod } from '@ngneat/spectator';
 
 import { RestApiService } from './rest-api.service';
+import { HttpClient } from '@angular/common/http';
 
-describe('RestApiService', () => {
-  beforeEach(() => TestBed.configureTestingModule({}));
+
+describe('restApiService', () => {
+  let spectator: SpectatorService<RestApiService>;
+  const createService = createServiceFactory({
+    providers: [
+      mockProvider(HttpClient)
+    ],
+    service: RestApiService
+  });
+
+  beforeEach(() => (spectator = createService()));
 
   it('should be created', () => {
-    const service: RestApiService = TestBed.get(RestApiService);
-    expect(service).toBeTruthy();
+    expect(spectator.service).toBeTruthy();
   });
 });

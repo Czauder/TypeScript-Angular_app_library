@@ -1,12 +1,14 @@
-import { createServiceFactory, SpectatorService } from '@ngneat/spectator';
+import { createServiceFactory, SpectatorService, mockProvider } from '@ngneat/spectator';
 
 import { UserService } from './user.service';
 import { User } from '../models/user-model';
 import { Wallet } from '../models/wallet-model';
+import { RestApiService } from './rest-api.service';
 
 describe('UserService', () => {
   let spectator: SpectatorService<UserService>;
   const createService = createServiceFactory({
+    providers: [mockProvider(RestApiService)],
     service: UserService
   });
 
