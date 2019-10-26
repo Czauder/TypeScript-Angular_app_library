@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Book } from '../models/book-model';
 import { Transaction } from '../models/transaction-model';
 import { User } from '../models/user-model';
+import { RestApiService } from './rest-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,9 @@ import { User } from '../models/user-model';
 export class BookstoreService {
   public clients: Array<User> = [];
   public books: Array<Book> = [];
+  public Books: any = [];
 
-  constructor() {}
+  constructor(private restApi: RestApiService) {}
 
   public addUser(client: User): void {
     this.clients.push(client);
@@ -94,5 +96,19 @@ export class BookstoreService {
       userReceiving.boughtBooks.push(transaction.book);
       userBuying.wallet.balance -= transaction.book.price.value;
     }
+  }
+
+  public sendBookToServer(book: Book) {
+    this.restApi.addBook(book).subscribe((data: {}) => {
+      console.log(data);
+      console.log('created book in server');
+    });
+  }
+
+  public loadBooksFromServer() {
+    this.restApi.getBook().subscribe((data: {}) => {
+      this.Books = data;
+      console.log(this.Books);
+    });
   }
 }

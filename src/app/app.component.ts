@@ -25,56 +25,40 @@ export class AppComponent implements OnInit {
     bookType.Comedy,
     new Author('Janusz', 'Malarz'),
     new Price(63, CurrencyType.pln),
-    new Price(6, CurrencyType.pln),
+    new Price(6, CurrencyType.pln)
   );
   public book2 = new Book(
     'Alicja w Krainie Czarów',
     bookType.Criminal,
     new Author('Janusz', 'Niewiem'),
     new Price(3, CurrencyType.pln),
-    new Price(2, CurrencyType.pln),
+    new Price(2, CurrencyType.pln)
   );
   public book3 = new Book(
     'Dzieci z Bul',
     bookType.Romantic,
     new Author('Kuba', 'Koś'),
     new Price(123, CurrencyType.pln),
-    new Price(1, CurrencyType.pln),
+    new Price(1, CurrencyType.pln)
   );
   public book4 = new Book(
     'JavaScript',
     bookType.Comedy,
     new Author('Bogdan', 'Malarz'),
     new Price(33, CurrencyType.pln),
-    new Price(33, CurrencyType.pln),
+    new Price(33, CurrencyType.pln)
   );
   public books = [this.book2, this.book3, this.book4];
 
-  public user1 = new User(
-    'Jan Maj',
-    'maj@gmail.com',
-    new Wallet(123)
-  );
+  public user1 = new User('Jan Maj', 'maj@gmail.com', new Wallet(123));
   public user2 = new User(
     'Ania Lewangolska',
     'ania@gmail.com',
     new Wallet(324)
   );
-  public user3 = new User(
-    'Zosia Stróż',
-    'zosia@gmail.com',
-    new Wallet(1233)
-  );
-  public user4 = new User(
-    'Maciek Król',
-    'krol@gmail.com',
-    new Wallet(3423)
-  );
-  public user5 = new User(
-    'Tomek Kot',
-    'kot@gmail.com',
-    new Wallet(43534)
-  );
+  public user3 = new User('Zosia Stróż', 'zosia@gmail.com', new Wallet(1233));
+  public user4 = new User('Maciek Król', 'krol@gmail.com', new Wallet(3423));
+  public user5 = new User('Tomek Kot', 'kot@gmail.com', new Wallet(43534));
 
   public users = [this.user2, this.user3, this.user4, this.user5];
 
@@ -120,5 +104,14 @@ export class AppComponent implements OnInit {
     this.bookstoreService.buyBook(this.transaction1);
 
     this.userService.addMoneyToWallet(this.user1, 150);
+
+    // connection to an external server
+    //  book
+    this.bookstoreService.sendBookToServer(this.book4);
+    this.bookstoreService.loadBooksFromServer();
+
+    // user
+    // this.userService.sendUserToServer(this.user1);
+    // this.userService.loadUsersFromServer();
   }
 }
