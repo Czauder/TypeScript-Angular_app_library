@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+
+import { Book } from '../models/book-model';
 import { Transaction } from '../models/transaction-model';
 import { User } from '../models/user-model';
-import { Book } from '../models/book-model';
-import { transactionType } from '../transaction-type.enum';
+import { RestApiService } from './rest-api.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,9 @@ import { transactionType } from '../transaction-type.enum';
 export class BookstoreService {
   public clients: Array<User> = [];
   public books: Array<Book> = [];
+  public Books: any = [];
 
-  constructor() {}
+  constructor(private restApi: RestApiService) {}
 
   public addUser(client: User): void {
     this.clients.push(client);
@@ -31,32 +33,40 @@ export class BookstoreService {
     this.clients = this.clients.concat(clients);
   }
 
-  public buyBook(transaction: Transaction): void {
-    if (transaction.user.wallet.balance.value >= transaction.book.price) {
-      transaction.user.boughtBooks.push(transaction.book);
-      transaction.user.wallet.balance.value -= transaction.book.price;
-      console.log('ksiązka kupiona');
-    }
-  }
-
-  public hasBookInBorrowBooks(transaction: Transaction): boolean  {
-    transaction.user.borrowBooks.forEach(value => {
+  private hasBookInBorrowBooks(transaction: Transaction): boolean {
+    for (const value of transaction.user.borrowBooks) {
       if (value.name === transaction.book.name) {
         console.log('user already have this book');
+        return true;
       }
-    });
-    return true;
+    }
+    return false;
   }
 
- public hasBookInBoughtBooks(transaction: Transaction): boolean {
-    transaction.user.boughtBooks.forEach(item => {
+  private hasBookInBoughtBooks(transaction: Transaction): boolean {
+    for (const item of transaction.user.borrowBooks) {
       if (item.name === transaction.book.name) {
         console.log('user already have this book');
+        return true;
       }
-    });
-    return true;
+    }
+    return false;
   }
 
+  public buyBook(transaction: Transaction): void {
+    if (
+      !(
+        this.hasBookInBorrowBooks(transaction) ||
+        this.hasBookInBoughtBooks(transaction)
+      )
+    ) {
+      if (transaction.user.wallet.balance >= transaction.book.price.value) {
+        transaction.user.boughtBooks.push(transaction.book);
+        transaction.user.wallet.balance -= transaction.book.price.value;
+        console.log('ksiązka kupiona');
+      }
+    }
+  }
 
   public borrowBook(transaction: Transaction): void {
     if (
@@ -65,9 +75,45 @@ export class BookstoreService {
     ) {
       return;
     }
-    if (transaction.user.wallet.balance.value >= transaction.book.price) {
+    if (transaction.user.wallet.balance >= transaction.book.price.value) {
       transaction.user.borrowBooks.push(transaction.book);
-      transaction.user.wallet.balance.value -= transaction.book.rentalPrice;
+      transaction.user.wallet.balance -= transaction.book.rentalPrice.value;
     }
+  }
+
+  public buyBookAsGift(
+    userBuying: User,
+    userReceiving: User,
+    transaction: Transaction
+  ): void {
+    if (
+      this.hasBookInBorrowBooks(transaction) ||
+      this.hasBookInBoughtBooks(transaction)
+    ) {
+      return;
+    }
+    if (userBuying.wallet.balance >= transaction.book.price.value) {
+      userReceiving.boughtBooks.push(transaction.book);
+      userBuying.wallet.balance -= transaction.book.price.value;
+    }
+  }
+
+  // public sendBookToServer(book: Book) {
+  //   // normally i should put to parameter 'book'
+  //   this.restApi.createBook(book).subscribe(
+  //     (data: {}) => {
+  //       console.log('created book in server ', data);
+  //     },
+  //     (error: any) => console.log(error),
+  //     () => console.log('completed')
+  //   );
+  // }
+
+  public loadBooksFromServer() {
+    // 1 version
+    this.restApi.getBook().subscribe((data: {}) => {
+      this.Books = data;
+      console.log(this.Books);
+    });
   }
 }

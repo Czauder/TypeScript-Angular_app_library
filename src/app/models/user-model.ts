@@ -11,7 +11,7 @@ export class User {
   public borrowBooks: Array<Book> = [];
   public boughtBooks: Array<Book> = [];
 
-  public constructor(id: Guid, name: string, email: string, wallet: Wallet) {
+  public constructor(name: string, email: string, wallet: Wallet) {
     this.id = Guid.create();
     this.name = name;
     this.email = email;
