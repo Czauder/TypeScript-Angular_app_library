@@ -1,7 +1,6 @@
 import { bookType } from '../book-type.enum';
-import { BookBorrow } from './book-borrow';
 import { Author } from './author-model';
-import { Guid } from 'guid-typescript';
+import { BookBorrow } from './book-borrow';
 import { Price } from './price-model';
 
 export class Book {

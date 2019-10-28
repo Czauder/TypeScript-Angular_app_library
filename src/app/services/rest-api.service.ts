@@ -19,19 +19,20 @@ export class RestApiService {
   };
 
   public createBook(book: Book): Observable<Book> {
-    return this.http.post<Book>(
-      this.apiURL + '/books',
-      book,
-      this.httpOptions
-    );
+    return this.http.post<Book>(this.apiURL + '/books', book, this.httpOptions);
   }
 
-  public getBook(): Observable<Book[]> {
+  public getBooks(): Observable<Book[]> {
     console.log('getting all books from the server');
     return this.http.get<Book[]>(this.apiURL + '/books');
   }
 
-  // for future implementation 
+  public getBookById(id): Observable<Book> {
+    console.log('only one book');
+    return this.http.get<Book>(this.apiURL + '/books/' + id);
+  }
+
+  // for future implementation
 
   // public addUser(user: User): Observable<User> {
   //   return this.http.post<User>(
@@ -44,7 +45,6 @@ export class RestApiService {
   // public getUser(): Observable<User[]> {
   //   return this.http.get<User[]>(this.apiURL + '/users');
   // }
-  
 
   // jak dodać obsługę błedu?
   // Error handling

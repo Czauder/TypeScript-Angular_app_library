@@ -110,9 +110,16 @@ export class AppComponent implements OnInit {
     this.userService.addMoneyToWallet(this.user1, 150);
 
     // connection to an external server
-    //  book
+    this.bookstoreService.sendBookToServer(this.book1);
+    this.bookstoreService.sendBookToServer(this.book2);
+    this.bookstoreService.sendBookToServer(this.book3);
     this.bookstoreService.sendBookToServer(this.book4);
+
+    // all
     this.bookstoreService.loadBooksFromServer();
+
+    // one by id
+    this.bookstoreService.loadBookFromServer('3');
 
     // user
     // this.userService.sendUserToServer(this.user1);
