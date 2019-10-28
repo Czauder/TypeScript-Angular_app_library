@@ -98,22 +98,28 @@ export class BookstoreService {
     }
   }
 
-  // public sendBookToServer(book: Book) {
-  //   // normally i should put to parameter 'book'
-  //   this.restApi.createBook(book).subscribe(
-  //     (data: {}) => {
-  //       console.log('created book in server ', data);
-  //     },
-  //     (error: any) => console.log(error),
-  //     () => console.log('completed')
-  //   );
-  // }
+  public sendBookToServer(book: Book) {
+    this.restApi.createBook(book).subscribe(
+      (data: {}) => {
+        console.log('created book in server ', data);
+      },
+      (error: any) => console.log(error),
+      () => console.log('completed')
+    );
+  }
 
   public loadBooksFromServer() {
-    // 1 version
-    this.restApi.getBook().subscribe((data: {}) => {
+    this.restApi.getBooks().subscribe((data: {}) => {
       this.Books = data;
       console.log(this.Books);
+    });
+  }
+
+
+  public loadBookFromServer(id: string) {
+    this.restApi.getBookById(id).subscribe((data: {}) => {
+      this.Books.id = data;
+      console.log('book id 2');
     });
   }
 }
