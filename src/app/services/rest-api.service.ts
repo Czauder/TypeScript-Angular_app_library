@@ -31,7 +31,7 @@ export class RestApiService {
     return this.http.get<Book[]>(this.apiURL + '/books');
   }
 
-  // for future implementation 
+  // for future implementation
 
   // public addUser(user: User): Observable<User> {
   //   return this.http.post<User>(
@@ -44,7 +44,6 @@ export class RestApiService {
   // public getUser(): Observable<User[]> {
   //   return this.http.get<User[]>(this.apiURL + '/users');
   // }
-  
 
   // jak dodać obsługę błedu?
   // Error handling
