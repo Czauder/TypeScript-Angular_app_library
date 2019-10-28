@@ -21,7 +21,7 @@ export class RestApiService {
   public createBook(book: Book): Observable<Book> {
     return this.http.post<Book>(
       this.apiURL + '/books',
-      JSON.stringify(book),
+      book,
       this.httpOptions
     );
   }

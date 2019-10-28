@@ -21,30 +21,34 @@ import { Guid } from 'guid-typescript';
 export class AppComponent implements OnInit {
   title = 'bookstore-app';
   public book1 = new Book(
+    1,
     'Angular 8',
     bookType.Comedy,
-    new Author('Janusz', 'Malarz'),
+    new Author(1, 'Janusz', 'Malarz'),
     new Price(63, CurrencyType.pln),
     new Price(6, CurrencyType.pln)
   );
   public book2 = new Book(
+    2,
     'Alicja w Krainie Czarów',
     bookType.Criminal,
-    new Author('Janusz', 'Niewiem'),
+    new Author(2, 'Janusz', 'Niewiem'),
     new Price(3, CurrencyType.pln),
     new Price(2, CurrencyType.pln)
   );
   public book3 = new Book(
+    2,
     'Dzieci z Bul',
     bookType.Romantic,
-    new Author('Kuba', 'Koś'),
+    new Author(3, 'Kuba', 'Koś'),
     new Price(123, CurrencyType.pln),
     new Price(1, CurrencyType.pln)
   );
   public book4 = new Book(
+    4,
     'JavaScript',
     bookType.Comedy,
-    new Author('Bogdan', 'Malarz'),
+    new Author(4, ' Bogdan', 'Malarz'),
     new Price(33, CurrencyType.pln),
     new Price(33, CurrencyType.pln)
   );
@@ -107,7 +111,7 @@ export class AppComponent implements OnInit {
 
     // connection to an external server
     //  book
-    // this.bookstoreService.sendBookToServer(this.book4);
+    this.bookstoreService.sendBookToServer(this.book4);
     this.bookstoreService.loadBooksFromServer();
 
     // user

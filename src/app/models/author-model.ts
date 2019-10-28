@@ -1,12 +1,10 @@
-import { Guid } from 'guid-typescript';
-
 export class Author {
-  public id: Guid;
+  public id: number;
   public firstName: string;
   public lastName: string;
 
-  public constructor(firstName: string, lastName: string) {
-    this.id = Guid.create();
+  public constructor( id: number, firstName: string, lastName: string) {
+    this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
   }
