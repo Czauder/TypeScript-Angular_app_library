@@ -20,6 +20,8 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+ public bookModel: Book;
+
   title = 'bookstore-app';
   public book1 = new Book(
     1,
@@ -115,9 +117,10 @@ export class AppComponent implements OnInit {
     // this.userService.loadUsersFromServer();
   }
 
-  public onFormSubmit(bookForm: NgForm) {
-    console.log(bookForm.value);
-    this.bookstoreService.sendBookToServer(bookForm.value);
+  public onFormSubmit() {
+    // console.log(bookForm.value);
+    console.log(this.bookModel)
+    this.bookstoreService.sendBookToServer(this.bookModel);
   }
 
   public resetUserForm(bookForm: NgForm) {
