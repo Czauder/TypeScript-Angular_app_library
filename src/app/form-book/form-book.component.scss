@@ -1,0 +1,17 @@
+$margin: 2%;
+
+form {
+  margin-left: $margin;
+
+  & div.form-item {
+    margin: $margin;
+  };
+
+  & div label {
+    margin-right: $margin;
+  };
+
+  button {
+      margin: $margin;
+  }
+}
