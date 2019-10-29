@@ -33,7 +33,6 @@ export class RestApiService {
   }
 
   // for future implementation
-
   // public addUser(user: User): Observable<User> {
   //   return this.http.post<User>(
   //     this.apiURL + '/users',
