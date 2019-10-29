@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { bookType } from './book-type.enum';
+import { BookType } from './book-type.enum';
 import { Author } from './models/author-model';
 import { Book } from './models/book-model';
 import { Transaction } from './models/transaction-model';
@@ -8,7 +8,7 @@ import { User } from './models/user-model';
 import { Wallet } from './models/wallet-model';
 import { BookstoreService } from './services/bookstore.service';
 import { UserService } from './services/user.service';
-import { transactionType } from './transaction-type.enum';
+import { TransactionType } from './transaction-type.enum';
 import { Price } from './models/price-model';
 import { CurrencyType } from './currency-type.enum';
 import { Guid } from 'guid-typescript';
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   public book1 = new Book(
     1,
     'Angular 8',
-    bookType.Comedy,
+    BookType.Comedy,
     new Author(1, 'Janusz', 'Malarz'),
     new Price(63, CurrencyType.pln),
     new Price(6, CurrencyType.pln)
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
   public book2 = new Book(
     2,
     'Alicja w Krainie Czarów',
-    bookType.Criminal,
+    BookType.Criminal,
     new Author(2, 'Janusz', 'Niewiem'),
     new Price(3, CurrencyType.pln),
     new Price(2, CurrencyType.pln)
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   public book3 = new Book(
     2,
     'Dzieci z Bul',
-    bookType.Romantic,
+    BookType.Romantic,
     new Author(3, 'Kuba', 'Koś'),
     new Price(123, CurrencyType.pln),
     new Price(1, CurrencyType.pln)
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
   public book4 = new Book(
     4,
     'JavaScript',
-    bookType.Comedy,
+    BookType.Comedy,
     new Author(4, ' Bogdan', 'Malarz'),
     new Price(33, CurrencyType.pln),
     new Price(33, CurrencyType.pln)
@@ -69,21 +69,21 @@ export class AppComponent implements OnInit {
 
   public transaction1 = new Transaction(
     this.user1,
-    transactionType.boughtBooks,
+    TransactionType.boughtBooks,
     new Date(),
     this.book2
   );
 
   public transaction2 = new Transaction(
     this.user2,
-    transactionType.boughtBooks,
+    TransactionType.boughtBooks,
     new Date(),
     this.book3
   );
 
   public transaction3 = new Transaction(
     this.user4,
-    transactionType.borrowBooks,
+    TransactionType.borrowBooks,
     new Date(),
     this.book4
   );

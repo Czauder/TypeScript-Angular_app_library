@@ -1,11 +1,11 @@
-import { returnBookOption } from '../return-book-type.enum';
+import { ReturnBookOption } from '../return-book-type.enum';
 
 export class BookBorrow {
   public borrowBookDate: Date;
-  public returnBookDate: returnBookOption;
+  public returnBookDate: ReturnBookOption;
 
   get getReturnDate(): Date {
-    if (this.returnBookDate === returnBookOption.after5days) {
+    if (this.returnBookDate === ReturnBookOption.after5days) {
       const returnDate = new Date();
       returnDate.setDate(returnDate.getDate() + 5);
       return returnDate;

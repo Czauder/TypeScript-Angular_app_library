@@ -1,4 +1,4 @@
-import { bookType } from '../book-type.enum';
+import { BookType } from '../book-type.enum';
 import { Author } from './author-model';
 import { BookBorrow } from './book-borrow';
 import { Price } from './price-model';
@@ -6,7 +6,7 @@ import { Price } from './price-model';
 export class Book {
   public id: number;
   public name: string;
-  public bookCategory: bookType;
+  public bookCategory: BookType;
   public author: Author;
   public price: Price;
   public rentalPrice: Price;
@@ -15,7 +15,7 @@ export class Book {
   public constructor(
     id: number,
     name: string,
-    bookCategory: bookType,
+    bookCategory: BookType,
     author: Author,
     price: Price,
     rentalPrice: Price
