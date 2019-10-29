@@ -28,7 +28,7 @@ export class RestApiService {
   }
 
   public getBookById(id): Observable<Book> {
-    console.log('only one book');
+    console.log('geting only one book from server');
     return this.http.get<Book>(this.apiURL + '/books/' + id);
   }
 

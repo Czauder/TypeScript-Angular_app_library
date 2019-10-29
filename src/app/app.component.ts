@@ -12,6 +12,7 @@ import { transactionType } from './transaction-type.enum';
 import { Price } from './models/price-model';
 import { CurrencyType } from './currency-type.enum';
 import { Guid } from 'guid-typescript';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -95,34 +96,32 @@ export class AppComponent implements OnInit {
   public ngOnInit(): void {
     this.bookstoreService.addBooks(this.books);
     // console.log(this.bookstore.books);
-
     this.bookstoreService.addBook(this.book1);
     console.log(this.bookstoreService.books);
-
     this.bookstoreService.addUsers(this.users);
     console.log(this.bookstoreService.clients);
-
     this.bookstoreService.addUser(this.user1);
     console.log(this.bookstoreService.clients[0]);
-
     this.bookstoreService.buyBook(this.transaction1);
-
     this.userService.addMoneyToWallet(this.user1, 150);
-
     // connection to an external server
-    this.bookstoreService.sendBookToServer(this.book1);
-    this.bookstoreService.sendBookToServer(this.book2);
-    this.bookstoreService.sendBookToServer(this.book3);
-    this.bookstoreService.sendBookToServer(this.book4);
-
+    // this.bookstoreService.sendBookToServer(this.book1);
     // all
     this.bookstoreService.loadBooksFromServer();
-
     // one by id
     this.bookstoreService.loadBookFromServer('3');
-
     // user
     // this.userService.sendUserToServer(this.user1);
     // this.userService.loadUsersFromServer();
+  }
+
+  public onFormSubmit(bookForm: NgForm) {
+    console.log(bookForm.value);
+    this.bookstoreService.sendBookToServer(bookForm.value);
+  }
+
+  public resetUserForm(bookForm: NgForm) {
+    bookForm.resetForm();
+    console.log('reset');
   }
 }

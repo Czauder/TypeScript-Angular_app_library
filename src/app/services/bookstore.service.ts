@@ -63,7 +63,6 @@ export class BookstoreService {
       if (transaction.user.wallet.balance >= transaction.book.price.value) {
         transaction.user.boughtBooks.push(transaction.book);
         transaction.user.wallet.balance -= transaction.book.price.value;
-        console.log('ksiązka kupiona');
       }
     }
   }
@@ -119,7 +118,6 @@ export class BookstoreService {
   public loadBookFromServer(id: string) {
     this.restApi.getBookById(id).subscribe((data: {}) => {
       this.Books.id = data;
-      console.log('book id 2');
     });
   }
 }
