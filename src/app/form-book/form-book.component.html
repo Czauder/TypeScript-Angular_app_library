@@ -3,11 +3,11 @@
         <h2> send book to external server:</h2>
         <div class="form-item">
             <label>Book ID:</label>
-            <input [(ngModel)]="bookModel.id" name="bookId" required type="number" placeholder="id">
+            <input class="style-input" [(ngModel)]="bookModel.id" name="bookId" required type="number" placeholder="id">
         </div>
         <div class="form-item">
             <label>Book Name:</label>
-            <input [(ngModel)]="bookModel.name" name="bookName" required type="text" placeholder="title">
+            <input class="style-input" [(ngModel)]="bookModel.name" name="bookName" required type="text" placeholder="title">
         </div>
         <div class="form-item">
             <label>Book Category:</label>
@@ -19,14 +19,14 @@
         </div>
         <div class="form-item">
             <label>Author:</label>
-            <input [(ngModel)]="bookModel.author.id" name="authorId" required type="number" placeholder="id">
-            <input [(ngModel)]="bookModel.author.firstName" name="authorFirstName" required type="text" placeholder="first name">
-            <input [(ngModel)]="bookModel.author.lastName" name="authorLastName" id="authorLastName" required type="text"
+            <input class="style-input" [(ngModel)]="bookModel.author.id" name="authorId" required type="number" placeholder="id">
+            <input class="style-input" [(ngModel)]="bookModel.author.firstName" name="authorFirstName" required type="text" placeholder="first name">
+            <input class="style-input" [(ngModel)]="bookModel.author.lastName" name="authorLastName" id="authorLastName" required type="text"
                 placeholder="last name">
         </div>
         <div class="form-item">
             <label>Price:</label>
-            <input [(ngModel)]="bookModel.price.value" name="price" required type="number" placeholder="price">
+            <input class="style-input" [(ngModel)]="bookModel.price.value" name="price" required type="number" placeholder="price">
             <select name="currencyBuying" [(ngModel)]="currencyBuying" required>
                 <option [ngValue]="dollar" value="dollar">dollar</option>
                 <option [ngValue]="euro" value="euro">euro</option>
@@ -35,7 +35,7 @@
         </div>
         <div class="form-item">
             <label>Rental Price:</label>
-            <input [(ngModel)]="bookModel.price.value" name="rentalPrice" required type="number" placeholder="rental price">
+            <input class="style-input" [(ngModel)]="bookModel.price.value" name="rentalPrice" required type="number" placeholder="rental price">
             <select name="currencyRental" [(ngModel)]="currencyRental" required>
                 <option [ngValue]="dollar" value="dollar">dollar</option>
                 <option [ngValue]="euro" value="euro">euro</option>

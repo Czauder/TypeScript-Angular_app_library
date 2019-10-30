@@ -1,13 +1,12 @@
-import {
-  Spectator,
-  createComponentFactory,
-  mockProvider
-} from '@ngneat/spectator';
+import { HttpClient } from '@angular/common/http';
+import { createComponentFactory, mockProvider, Spectator } from '@ngneat/spectator';
+import { MockComponent } from 'ng-mocks';
+
 import { AppComponent } from './app.component';
-import { UserService } from './services/user.service';
+import { FormBookComponent } from './form-book/form-book.component';
 import { BookstoreService } from './services/bookstore.service';
 import { RestApiService } from './services/rest-api.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { UserService } from './services/user.service';
 
 describe('app-root', () => {
   let spectator: Spectator<AppComponent>;
@@ -18,7 +17,8 @@ describe('app-root', () => {
       BookstoreService,
       RestApiService,
       mockProvider(HttpClient)
-    ]
+    ],
+    declarations: [MockComponent(FormBookComponent)]
   });
 
   beforeEach(() => (spectator = createComponent()));

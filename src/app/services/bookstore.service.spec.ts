@@ -1,14 +1,18 @@
-import { createServiceFactory, SpectatorService, mockProvider } from '@ngneat/spectator';
+import {
+  createServiceFactory,
+  SpectatorService,
+  mockProvider
+} from '@ngneat/spectator';
 import { BookstoreService } from './bookstore.service';
 import { User } from '../models/user-model';
 import { Wallet } from '../models/wallet-model';
 import { Book } from '../models/book-model';
-import { bookType } from '../book-type.enum';
+import { BookType } from '../book-type.enum';
 import { Price } from '../models/price-model';
 import { Author } from '../models/author-model';
 import { CurrencyType } from '../currency-type.enum';
 import { Transaction } from '../models/transaction-model';
-import { transactionType } from '../transaction-type.enum';
+import { TransactionType } from '../transaction-type.enum';
 import { RestApiService } from './rest-api.service';
 
 describe('BookstoreService', () => {
@@ -28,16 +32,17 @@ describe('BookstoreService', () => {
     const user = new User('Jaś Kot', 'kot@gmail.com', new Wallet(1555));
 
     const book = new Book(
+      99,
       'Jakaś Książka',
-      bookType.Comedy,
-      new Author('Pan', 'Ktoś'),
+      BookType.Comedy,
+      new Author(99, 'Pan', 'Ktoś'),
       new Price(150, CurrencyType.euro),
       new Price(50, CurrencyType.euro)
     );
 
     const transaction = new Transaction(
       user,
-      transactionType.borrowBooks,
+      TransactionType.borrowBooks,
       new Date(),
       book
     );
@@ -47,16 +52,17 @@ describe('BookstoreService', () => {
     const user = new User('Jaś Kot', 'kot@gmail.com', new Wallet(1555));
 
     const book = new Book(
+      1551,
       'Jakaś Książka',
-      bookType.Comedy,
-      new Author('Pan', 'Ktoś'),
+      BookType.Comedy,
+      new Author(1515, 'Pan', 'Ktoś'),
       new Price(150, CurrencyType.euro),
       new Price(50, CurrencyType.euro)
     );
 
     const transaction = new Transaction(
       user,
-      transactionType.borrowBooks,
+      TransactionType.borrowBooks,
       new Date(),
       book
     );
@@ -70,9 +76,10 @@ describe('BookstoreService', () => {
 
   it('should add book', () => {
     const bookMock = new Book(
+      2,
       'Jakaś Książka',
-      bookType.Comedy,
-      new Author('Pan', 'Ktoś'),
+      BookType.Comedy,
+      new Author(1, 'Pan', 'Ktoś'),
       new Price(150, CurrencyType.euro),
       new Price(50, CurrencyType.euro)
     );
@@ -92,16 +99,17 @@ describe('BookstoreService', () => {
     const user2 = new User('Asia Janek', 'janek@gmail.com', new Wallet(0));
 
     const book = new Book(
+      1,
       'Jakaś Książka',
-      bookType.Comedy,
-      new Author('Pan', 'Ktoś'),
+      BookType.Comedy,
+      new Author(1, 'Pan', 'Ktoś'),
       new Price(150, CurrencyType.euro),
       new Price(50, CurrencyType.euro)
     );
 
     const transaction2 = new Transaction(
       user2,
-      transactionType.boughtBooks,
+      TransactionType.boughtBooks,
       new Date(),
       book
     );

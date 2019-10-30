@@ -1,25 +1,57 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  createComponentFactory,
+  mockProvider,
+  Spectator
+} from '@ngneat/spectator';
 
+import { BookstoreService } from '../services/bookstore.service';
+import { RestApiService } from '../services/rest-api.service';
 import { FormBookComponent } from './form-book.component';
+import { BookType } from '../book-type.enum';
+import { CurrencyType } from '../currency-type.enum';
 
-describe('FormBookComponent', () => {
-  let component: FormBookComponent;
-  let fixture: ComponentFixture<FormBookComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FormBookComponent ]
-    })
-    .compileComponents();
-  }));
+fdescribe('app-form-book', () => {
+  let inputs: any;
+  let spectator: Spectator<FormBookComponent>;
+  const createComponent = createComponentFactory({
+    component: FormBookComponent,
+    imports: [FormsModule, ReactiveFormsModule],
+    providers: [BookstoreService, RestApiService, mockProvider(HttpClient)]
+  });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormBookComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    spectator = createComponent();
+    spectator.component.bookModel = {
+      id: 0,
+      name: '',
+      bookCategory: BookType.Comedy,
+      author: {
+        id: 0,
+        firstName: '',
+        lastName: ''
+      },
+      price: {
+        value: 0,
+        currency: CurrencyType.dollar
+      },
+      rentalPrice: {
+        value: 0,
+        currency: CurrencyType.dollar
+      }
+    };
+    inputs = spectator.queryAll('.style-input');
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeDefined();
+  });
+
+  it('should input have required attribute ', () => {
+    spectator.detectComponentChanges();
+    for (const input of inputs) {
+      expect(input.hasAttribute('required')).toBeTruthy();
+    }
   });
 });
