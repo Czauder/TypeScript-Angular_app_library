@@ -10,7 +10,7 @@ export class Book {
   public author: Author;
   public price: Price;
   public rentalPrice: Price;
-  public borrowData: BookBorrow;
+  // public borrowData: BookBorrow;
 
   public constructor(
     id: number,
