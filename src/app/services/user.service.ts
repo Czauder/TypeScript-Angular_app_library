@@ -14,7 +14,7 @@ export class UserService {
 
   public addMoneyToWallet(user: User, cash: number): void {
     user.wallet.balance += cash;
-    console.log('added monay from bank');
+    console.log('added money from bank');
   }
 
   // public loadUsersFromServer() {
