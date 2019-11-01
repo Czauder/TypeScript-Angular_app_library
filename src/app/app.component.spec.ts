@@ -4,9 +4,11 @@ import { MockComponent } from 'ng-mocks';
 
 import { AppComponent } from './app.component';
 import { FormBookComponent } from './form-book/form-book.component';
+import { ListBookComponent } from './list-book/list-book.component';
 import { BookstoreService } from './services/bookstore.service';
 import { RestApiService } from './services/rest-api.service';
 import { UserService } from './services/user.service';
+import { Store } from '@ngrx/store';
 
 describe('app-root', () => {
   let spectator: Spectator<AppComponent>;
@@ -16,10 +18,12 @@ describe('app-root', () => {
       UserService,
       BookstoreService,
       RestApiService,
-      mockProvider(HttpClient)
+      mockProvider(HttpClient),
+      mockProvider(Store)
     ],
-    declarations: [MockComponent(FormBookComponent)]
+    declarations: [MockComponent(FormBookComponent), MockComponent(ListBookComponent)]
   });
+  
 
   beforeEach(() => (spectator = createComponent()));
 

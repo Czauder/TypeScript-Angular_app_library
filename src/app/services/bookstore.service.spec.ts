@@ -74,19 +74,6 @@ describe('BookstoreService', () => {
     expect(spectator.service.books.includes(expectBorrowBook)).toBeFalsy();
   });
 
-  it('should add book', () => {
-    const bookMock = new Book(
-      2,
-      'Jakaś Książka',
-      BookType.Comedy,
-      new Author(1, 'Pan', 'Ktoś'),
-      new Price(150, CurrencyType.euro),
-      new Price(50, CurrencyType.euro)
-    );
-
-    spectator.service.addBook(bookMock);
-    expect(spectator.service.books.length).toBeGreaterThan(0);
-  });
 
   it('should add user', () => {
     const user = new User('Jaś Kot', 'kot@gmail.com', new Wallet(1555));

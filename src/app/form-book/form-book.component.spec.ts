@@ -11,14 +11,15 @@ import { RestApiService } from '../services/rest-api.service';
 import { FormBookComponent } from './form-book.component';
 import { BookType } from '../book-type.enum';
 import { CurrencyType } from '../currency-type.enum';
+import { Store } from '@ngrx/store';
 
-fdescribe('app-form-book', () => {
+describe('app-form-book', () => {
   let inputs: any;
   let spectator: Spectator<FormBookComponent>;
   const createComponent = createComponentFactory({
     component: FormBookComponent,
     imports: [FormsModule, ReactiveFormsModule],
-    providers: [BookstoreService, RestApiService, mockProvider(HttpClient)]
+    providers: [BookstoreService, RestApiService, mockProvider(HttpClient), mockProvider(Store)]
   });
 
   beforeEach(() => {

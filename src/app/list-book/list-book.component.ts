@@ -14,8 +14,6 @@ export class ListBookComponent implements OnInit {
 
   public ngOnInit(): void {
     this.store.select(selectBooks).subscribe(books => {
-      console.log(`books:${books}`);
-
       this.books = books;
     });
   }

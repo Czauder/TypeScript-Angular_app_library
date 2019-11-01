@@ -1,25 +1,37 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  createComponentFactory,
+  mockProvider,
+  Spectator
+} from '@ngneat/spectator';
+import { Store } from '@ngrx/store';
+import { of } from 'rxjs';
 
 import { ListBookComponent } from './list-book.component';
 
-describe('ListBookComponent', () => {
-  let component: ListBookComponent;
-  let fixture: ComponentFixture<ListBookComponent>;
+let store: any;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ListBookComponent ]
-    })
-    .compileComponents();
-  }));
+describe('app-list-book', () => {
+  let spectator: Spectator<ListBookComponent>;
+  const createComponent = createComponentFactory({
+    component: ListBookComponent,
+    imports: [],
+    providers: [mockProvider(Store)]
+  });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListBookComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    spectator = createComponent();
+    store = spectator.get(Store);
+    console.log(store);
+
+    store.dispatch.and.callThrough();
+
+    store.select.and.returnValue(of([]));
+
+    spectator.component.books = [];
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    spectator.detectChanges();
+    expect(spectator.component).toBeDefined();
   });
 });
