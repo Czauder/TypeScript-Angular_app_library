@@ -98,29 +98,29 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     this.store.dispatch(getBooks());
-    this.bookstoreService.addBooks(this.books);
-    // console.log(this.bookstore.books);
+    // this.bookstoreService.addBooks(this.books);
+    // // console.log(this.bookstore.books);
 
-    this.bookstoreService.addBook(this.book1);
-    console.log(this.bookstoreService.books);
+    // this.bookstoreService.addBook(this.book1);
+    // console.log(this.bookstoreService.books);
 
-    this.bookstoreService.addUsers(this.users);
-    console.log(this.bookstoreService.clients);
+    // this.bookstoreService.addUsers(this.users);
+    // console.log(this.bookstoreService.clients);
 
-    this.bookstoreService.addUser(this.user1);
-    console.log(this.bookstoreService.clients[0]);
+    // this.bookstoreService.addUser(this.user1);
+    // console.log(this.bookstoreService.clients[0]);
 
-    this.bookstoreService.buyBook(this.transaction1);
+    // this.bookstoreService.buyBook(this.transaction1);
 
-    this.userService.addMoneyToWallet(this.user1, 150);
+    // this.userService.addMoneyToWallet(this.user1, 150);
 
-    // connection to an external server
-    this.bookstoreService.sendBookToServer(this.book3);
-    // all
-    this.bookstoreService.loadBooksFromServer();
-    console.log(this.bookstoreService.loadBooksFromServer());
-    // one by id
-    this.bookstoreService.loadBookFromServer('3');
+    // // connection to an external server
+    // // this.bookstoreService.sendBookToServer(this.book3);
+    // // all
+    // this.bookstoreService.loadBooksFromServer();
+    // console.log(this.bookstoreService.loadBooksFromServer());
+    // // one by id
+    // this.bookstoreService.loadBookFromServer('3');
     // user
     // this.userService.sendUserToServer(this.user1);
     // this.userService.loadUsersFromServer();

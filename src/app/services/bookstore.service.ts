@@ -19,15 +19,6 @@ export class BookstoreService {
     this.clients.push(client);
   }
 
-  public addBook(book: Book): void {
-    console.log(book);
-    this.books.push(book);
-  }
-
-  public addBooks(books: Array<Book>): void {
-    this.books = this.books.concat(books);
-    console.log(books);
-  }
 
   public addUsers(clients: Array<User>) {
     this.clients = this.clients.concat(clients);

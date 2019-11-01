@@ -15,9 +15,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { BooksEffects } from './store/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { ListBookComponent } from './list-book/list-book.component';
 
 @NgModule({
-  declarations: [AppComponent, FormBookComponent],
+  declarations: [AppComponent, FormBookComponent, ListBookComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
