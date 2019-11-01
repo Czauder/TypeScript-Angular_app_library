@@ -11,6 +11,9 @@ import { Wallet } from './models/wallet-model';
 import { BookstoreService } from './services/bookstore.service';
 import { UserService } from './services/user.service';
 import { TransactionType } from './transaction-type.enum';
+import { Store } from '@ngrx/store';
+import { ApplicationState } from './store/state';
+import { getBooks } from './store/actions';
 
 @Component({
   selector: 'app-root',
@@ -89,10 +92,12 @@ export class AppComponent implements OnInit {
 
   public constructor(
     private userService: UserService,
-    private bookstoreService: BookstoreService
+    private bookstoreService: BookstoreService,
+    private store: Store<ApplicationState>
   ) {}
 
   public ngOnInit(): void {
+    this.store.dispatch(getBooks());
     this.bookstoreService.addBooks(this.books);
     // console.log(this.bookstore.books);
 

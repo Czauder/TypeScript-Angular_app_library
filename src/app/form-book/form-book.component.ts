@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Book } from '../models/book-model';
-import { BookstoreService } from '../services/bookstore.service';
+import { Store } from '@ngrx/store';
+
 import { BookType } from '../book-type.enum';
 import { CurrencyType } from '../currency-type.enum';
-import { ReturnBookOption } from '../return-book-type.enum';
+import { Book } from '../models/book-model';
+import { BookstoreService } from '../services/bookstore.service';
+import { addBook } from '../store/actions';
+import { ApplicationState } from '../store/state';
 
 @Component({
   selector: 'app-form-book',
@@ -31,18 +33,16 @@ export class FormBookComponent implements OnInit {
     }
   };
 
-  constructor(public bookstoreService: BookstoreService) {}
+  constructor(
+    public bookstoreService: BookstoreService,
+    private store: Store<ApplicationState>
+  ) {}
 
   public ngOnInit(): void {}
 
   public onFormSubmit() {
     // console.log(bookForm.value);
-    console.log(this.bookModel);
-    this.bookstoreService.sendBookToServer(this.bookModel);
-  }
-
-  public resetUserForm(bookForm: NgForm) {
-    bookForm.resetForm();
-    console.log('reset');
+    // console.log(this.bookModel);
+    this.store.dispatch(addBook({ book: this.bookModel }));
   }
 }
