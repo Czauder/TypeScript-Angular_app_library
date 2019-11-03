@@ -18,7 +18,7 @@ export const addBookFail = createAction('Add Book Fail');
 
 export const deleteBook = createAction('Delete book', props<{book: Book}>());
 export const deleteBookSuccess = createAction('Delete book Success', props<{book: Book}>());
-export const deleteBookFail = createAction('Delete book Fail', props<{book: Book}>());
+export const deleteBookFail = createAction('Delete book Fail');
 
 
 // for future 
