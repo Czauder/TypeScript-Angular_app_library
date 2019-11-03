@@ -1,14 +1,17 @@
 import { Book } from '../models/book-model';
 import { createSelector, createFeatureSelector } from '@ngrx/store';
+import { User } from '../models/user-model';
 
 export interface ApplicationState {
   Books: Book[];
   isLoading: boolean;
+  Users: User[]
 }
 
 export const initialState: ApplicationState = {
   Books: [],
-  isLoading: false
+  isLoading: false,
+  Users: []
 };
 
 export const selectApplicationState = createFeatureSelector<ApplicationState>('books');

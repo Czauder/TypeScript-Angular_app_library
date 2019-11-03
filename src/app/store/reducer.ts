@@ -6,9 +6,15 @@ import {
   getBooksSuccess,
   addBook,
   addBookSuccess,
-  addBookFail
+  addBookFail,
+  getUsers,
+  getUsersSuccess,
+  getUsersFail,
+  deleteBook,
+  deleteBookSuccess,
+  deleteBookFail
 } from './actions';
-import { initialState } from './state';
+import { initialState, isLoading } from './state';
 
 export const booksReducer = createReducer(
   initialState,
@@ -25,5 +31,19 @@ export const booksReducer = createReducer(
     Books: [...state.Books, payload.book],
     isLoading: false
   })),
-  on(addBookFail, state => ({ ...state, isLoading: false }))
+  on(addBookFail, state => ({ ...state, isLoading: false })),
+  on(deleteBook, state => ({ ...state, isLoading: true })),
+  on(deleteBookSuccess, (state) => ({
+    ...state,
+    Books: state.Books.filter(book => book.id === -1),
+    isLoading: false
+  })),
+  on(deleteBookFail, state => ({ ...state, isLoading: false })),
+  on(getUsers, state => ({ ...state, isLoading: true })),
+  on(getUsersSuccess, (state, payload) => ({
+    ...state,
+    Users: payload.users,
+    isLoading: false
+  })),
+  on(getUsersFail, state => ({ ...state, isLoading: false }))
 );

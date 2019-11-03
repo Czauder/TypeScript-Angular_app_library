@@ -6,7 +6,13 @@ import {
   getBooksFail,
   addBook,
   addBookSuccess,
-  addBookFail
+  addBookFail,
+  getUsers,
+  getUsersSuccess,
+  getUsersFail,
+  deleteBook,
+  deleteBookSuccess,
+  deleteBookFail
 } from './actions';
 import { RestApiService } from '../services/rest-api.service';
 
@@ -46,6 +52,39 @@ export class BooksEffects {
       })
     );
   });
+
+  public deleteBook$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(deleteBook),
+      switchMap(action => {
+        return this.restApiService
+          .deleteBookById(action.book.id)
+          .pipe(
+            map(
+              res => deleteBookSuccess({ book: res }),
+              catchError(err => of(deleteBookFail))
+            )
+          );
+      })
+    );
+  });
+
+  // for future
+  // public getUsers = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(getUsers),
+  //     switchMap(action => {
+  //       return this.restApiService
+  //         .getUser()
+  //         .pipe(
+  //           map(
+  //             res => getUsersSuccess({ users: res }),
+  //             catchError(err => of(getUsersFail))
+  //           )
+  //         );
+  //     })
+  //   );
+  // });
 
   constructor(
     private actions$: Actions,
